@@ -231,8 +231,8 @@ class Visualizer:
                         pos = station.entry_point + (SIDING_LENGTH / (station.num_berths + 1)) * (station.num_berths - berth_idx)
                     except (ValueError, StopIteration): pass
             color_map = {'on_mainline': '#2ca02c', 'diverging': '#ff7f0e', 'in_station': '#1f77b4', 'merging': '#d62728'}
-            if name not in self.vehicle_artists: self.vehicle_artists[name] = self.ax.plot(pos, y_pos, 'o', markersize=9)[0]
-            self.vehicle_artists[name].set_data(pos, y_pos); self.vehicle_artists[name].set_color(color_map.get(state, 'black'))
+            if name not in self.vehicle_artists: self.vehicle_artists[name] = self.ax.plot([pos], [y_pos], 'o', markersize=9)[0]
+            self.vehicle_artists[name].set_data([pos], [y_pos]); self.vehicle_artists[name].set_color(color_map.get(state, 'black'))
         return self.vehicle_artists.values()
     def run_animation(self): self.setup_plot(); ani = animation.FuncAnimation(self.fig, self.animate, frames=len(self.prt_system.history), interval=100, blit=False, repeat=False); plt.tight_layout(); plt.show()
 
